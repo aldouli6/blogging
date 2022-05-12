@@ -19,11 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::middleware(['auth:api'])->group(function(){
     
-});
+Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
+     });
 Route::post('/login',  [ App\Http\Controllers\API\AuthController::class, 'login']);
 Route::post('/register', [ App\Http\Controllers\API\AuthController::class, 'register']);
 Route::get('/logout',  [ App\Http\Controllers\API\AuthController::class, 'logout']);
 
 
 
-Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);

@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Auth;
 
 class PostController extends AppBaseController
 {
@@ -59,8 +60,10 @@ class PostController extends AppBaseController
         $post = $this->postRepository->create($input);
 
         Flash::success('Post saved successfully.');
-
-        return redirect(route('posts.index'));
+        if(Auth::user()->hasRole(['user']))
+            return redirect(route('home'));
+        else
+            return redirect(route('posts.index'));
     }
 
     /**

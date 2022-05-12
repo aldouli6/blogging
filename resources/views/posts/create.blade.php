@@ -7,7 +7,11 @@
         <div class="section-header">
             <h3 class="page__heading m-0">New Post</h3>
             <div class="filter-container section-header-breadcrumb row justify-content-md-end">
+            @hasrole('user')
+                <a href="{{ route('home') }}" class="btn btn-primary">Back</a>
+             @else
                 <a href="{{ route('posts.index') }}" class="btn btn-primary">Back</a>
+            @endhasrole
             </div>
         </div>
         <div class="content">

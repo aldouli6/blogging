@@ -1,9 +1,5 @@
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::select('user_id', $userItems, null, ['class' => 'form-control']) !!}
-</div>
-
+    <input name="user_id" type="hidden" value="{{ \Auth::id() }}">
 <!-- Title Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('title', 'Title:') !!}
@@ -19,5 +15,9 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    @hasrole('user')
+    <a href="{{ route('home') }}" class="btn btn-light">Cancel</a>
+    @else
     <a href="{{ route('posts.index') }}" class="btn btn-light">Cancel</a>
+    @endhasrole
 </div>
