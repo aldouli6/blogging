@@ -25,7 +25,7 @@
                                     <div class="row">
                                         @include('posts.fields')
                                     </div>
-                                {!! Form::close() !!}
+                                {!! Form::close() !!} 
                            </div>
                        </div>
                    </div>
