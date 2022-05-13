@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Repositories\PostRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Post;
 use Flash;
 use Response;
 use Auth;
@@ -30,12 +31,30 @@ class PostController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $posts = $this->postRepository->all();
+        if(Auth::user()->hasRole(['superadmin']))
+            $posts = $this->postRepository->all();
+        else
+            $posts = Post::where('user_id', Auth::id())->get();
 
         return view('posts.index')
             ->with('posts', $posts);
     }
+    public function import()
+    {
+        $url = 'https://sq1-api-test.herokuapp.com/posts';
 
+        $response = file_get_contents($url);
+        $input = json_decode($response);
+        $count = 0;
+        foreach ($input->data as $item){
+            $count++;
+            $item->user_id =  Auth::id();
+            $post = $this->postRepository->create($item);
+        }
+        Flash::success( $count.' Posts saved successfully');
+        return redirect(route('posts.index'));
+        
+    }
     /**
      * Show the form for creating a new Post.
      *

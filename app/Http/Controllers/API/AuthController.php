@@ -47,9 +47,14 @@ class AuthController extends  AppBaseController
 
         if (!auth()->attempt($loginData)) {
             return $this->sendError(
-                'Credenciales Inválidas', 200
+                'Invalid Credentials', 200
             );
         } 
+        if(!auth()->user()->hasRole(['admin'])){
+            return $this->sendError(
+                'You have no permissions', 200
+            );
+        }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
         $user['access_token']  = $accessToken;
         return response(['success'=>true,'data' => $user]);

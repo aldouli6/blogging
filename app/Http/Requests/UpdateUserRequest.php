@@ -24,7 +24,8 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = User::$rules;
+        $rules =['email' => 'required|email|unique:users',
+        'password' => 'required|min:8',];
         
         return $rules;
     }

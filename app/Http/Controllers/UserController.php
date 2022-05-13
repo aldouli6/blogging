@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
 {
@@ -55,9 +56,9 @@ class UserController extends AppBaseController
     public function store(CreateUserRequest $request)
     {
         $input = $request->all();
-
+        $input['password'] =  Hash::make($input['password']);
         $user = $this->userRepository->create($input);
-
+        $user->assignRole('admin');
         Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));

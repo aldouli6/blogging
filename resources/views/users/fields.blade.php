@@ -9,7 +9,15 @@
     {!! Form::label('email', 'Email:') !!}
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
-
+<!-- password Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('password', 'Password:') !!}
+    {!! Form::text('password', null, ['class' => 'form-control']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('password', 'Password:') !!}
+    {!! Form::text('password_confirmation', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

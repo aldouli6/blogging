@@ -7,6 +7,9 @@
         <div class="section-header">
             <h1>Posts</h1>
             <div class="section-header-breadcrumb">
+                <a href="{{ route('import')}}" class="btn btn-primary form-btn">Import<i class="fas fa-download"></i></a>
+            </div>
+            <div class="section-header-breadcrumb">
                 <a href="{{ route('posts.create')}}" class="btn btn-primary form-btn">Post <i class="fas fa-plus"></i></a>
             </div>
         </div>

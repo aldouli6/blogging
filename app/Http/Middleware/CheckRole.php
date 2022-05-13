@@ -18,8 +18,8 @@ class CheckRole
     public function handle(Request $request, Closure $next, $role)
     {
         if (!$request->user()->hasRole($role)) {
-            // Auth::logout();
-            return abort(403, 'No tienes autorización para ingresar.');
+            Auth::logout();
+            return abort(403, 'You have no permissions');
         }else {
             return $next($request);
         }

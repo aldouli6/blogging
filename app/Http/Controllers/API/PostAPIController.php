@@ -9,6 +9,7 @@ use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Auth;
 
 /**
  * Class PostController

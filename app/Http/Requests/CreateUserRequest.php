@@ -24,6 +24,7 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return User::$rules;
+        return ['email' => 'required|email|unique:users',
+        'password' => 'required|min:8',];
     }
 }

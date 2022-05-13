@@ -44,7 +44,8 @@ class Post extends Model
     public $fillable = [
         'user_id',
         'title',
-        'description'
+        'description',
+        'publication_date'
     ];
 
     /**
